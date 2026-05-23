@@ -66,3 +66,19 @@ body {
   height: 18px;
   fill: currentColor;
 }
+
+.map-link {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #111;
+  text-decoration: none;
+  opacity: 0.35;
+  transition: opacity 0.15s ease;
+}
+
+.map-link:hover {
+  opacity: 0.9;
+}
