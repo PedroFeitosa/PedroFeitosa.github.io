@@ -22,10 +22,10 @@ python3 -m http.server 8000
 - `style.css` — all styling shared across pages (no external CSS libraries)
 - `script.js` — placeholder; currently only a `console.log`
 
-### Open Water Map (`swimming.html`)
+### Open Water Map (`/lakes/can-i-swim`)
 An interactive map page powered by Leaflet.js (loaded from CDN) with CartoDB light tiles (no API key required).
 
-- `swimming.html` — map page shell; overrides body layout via `class="swimming-page"` on `<body>`
+- `lakes/can-i-swim/index.html` — map page shell; overrides body layout via `class="swimming-page"` on `<body>`; uses absolute paths (`/style.css`, `/swimming.css`, `/swimming.js`) so assets resolve correctly from the subdirectory
 - `swimming.css` — layout overrides for the map page, Leaflet popup/marker theme overrides, popup content styles
 - `swimming.js` — data, map init, marker and popup construction
 
