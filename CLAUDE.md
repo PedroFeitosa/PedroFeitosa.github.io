@@ -17,11 +17,21 @@ python3 -m http.server 8000
 
 ## Architecture
 
-Three files make up the entire site:
-
-- `index.html` — structure and inline SVG social icons
-- `style.css` — all styling (no external CSS libraries)
+### Main landing page
+- `index.html` — structure and inline SVG social icons; links to `swimming.html`
+- `style.css` — all styling shared across pages (no external CSS libraries)
 - `script.js` — placeholder; currently only a `console.log`
+
+### Open Water Map (`/lakes/can-i-swim`)
+An interactive map page powered by Leaflet.js (loaded from CDN) with CartoDB light tiles (no API key required).
+
+- `lakes/can-i-swim/index.html` — map page shell; overrides body layout via `class="swimming-page"` on `<body>`; uses absolute paths (`/style.css`, `/swimming.css`, `/swimming.js`) so assets resolve correctly from the subdirectory
+- `swimming.css` — layout overrides for the map page, Leaflet popup/marker theme overrides, popup content styles
+- `swimming.js` — data, map init, marker and popup construction
+
+**Data model:** `spots[]` array embedded in `swimming.js`. Each spot has `lat`, `lng`, `name`, `location`, and a `measurements[]` array. Each measurement has `timestamp` (ISO 8601), `water_temp_c`, `air_temp_c`, `humidity_pct`. The map always renders the latest measurement per spot (determined by `timestamp` comparison). Markers show water temp; clicking opens a popup with all three readings.
+
+**Leaflet integration notes:** Custom markers use `L.divIcon` with `className: "swim-marker-wrap"` (transparent wrapper) wrapping a styled `.swim-marker` div. Popup styles override Leaflet defaults to match the dark palette — see the `/* Leaflet popup overrides */` block in `swimming.css`. The map view auto-fits all marker bounds on load via `map.fitBounds`.
 
 ## Design Conventions
 
